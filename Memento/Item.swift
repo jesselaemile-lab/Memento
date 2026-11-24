@@ -1,18 +1,3 @@
-//
-//  Item.swift
-//  Memento
-//
-//  Created by Jessela Emile on 8/31/26.
-//
-
+// The SwiftData Item model is replaced by MementoKit's domain models.
+// See MementoKit/Models/ for MediaItem, MediaEvent, OrganizationPlan, etc.
 import Foundation
-import SwiftData
-
-@Model
-final class Item {
-    var timestamp: Date
-    
-    init(timestamp: Date) {
-        self.timestamp = timestamp
-    }
-}
