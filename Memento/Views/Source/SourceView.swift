@@ -392,6 +392,12 @@ struct SourceView: View {
     }
 
     private func restoreLastDestination() {
+        // UI tests can't drive the folder pickers; pre-fill the sample folders instead.
+        if UITestSupport.isActive {
+            if sourceURLs.isEmpty { addSource(UITestSupport.sourceURL) }
+            if destinationURL == nil { destinationURL = UITestSupport.destinationURL }
+            return
+        }
         guard destinationURL == nil,
               let data = UserDefaults.standard.data(forKey: Self.lastDestinationKey) else { return }
         var isStale = false

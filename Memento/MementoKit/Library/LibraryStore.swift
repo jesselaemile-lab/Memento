@@ -28,10 +28,7 @@ actor LibraryStore {
     private let transient = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
 
     static func makeURL() throws -> URL {
-        let support = try FileManager.default.url(
-            for: .applicationSupportDirectory, in: .userDomainMask,
-            appropriateFor: nil, create: true
-        )
+        let support = try AppDirectories.applicationSupport()
         let dir = support.appendingPathComponent("Memento", isDirectory: true)
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir.appendingPathComponent("library.db")

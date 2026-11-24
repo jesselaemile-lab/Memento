@@ -58,10 +58,7 @@ actor JournalStore {
     private(set) var journalURL: URL
 
     static func makeURL(runID: UUID) throws -> URL {
-        let support = try FileManager.default.url(
-            for: .applicationSupportDirectory, in: .userDomainMask,
-            appropriateFor: nil, create: true
-        )
+        let support = try AppDirectories.applicationSupport()
         let dir = support.appendingPathComponent("Memento/Journals", isDirectory: true)
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir.appendingPathComponent("\(runID).jsonl")

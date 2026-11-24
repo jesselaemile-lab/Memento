@@ -62,6 +62,7 @@ struct SidebarView: View {
             sidebarRowLabel(section, badge: badge, isSelected: isSelected)
         }
         .buttonStyle(.plain)
+        .accessibilityIdentifier("sidebar.\(section.rawValue)")
     }
 
     private func sidebarRowLabel(_ section: SidebarSection, badge: Int, isSelected: Bool) -> some View {

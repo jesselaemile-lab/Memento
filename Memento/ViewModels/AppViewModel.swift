@@ -138,10 +138,7 @@ final class AppViewModel {
     }
 
     private static func makeRunStoreURL() throws -> URL {
-        let support = try FileManager.default.url(
-            for: .applicationSupportDirectory, in: .userDomainMask,
-            appropriateFor: nil, create: true
-        )
+        let support = try AppDirectories.applicationSupport()
         let dir = support.appendingPathComponent("Memento", isDirectory: true)
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir.appendingPathComponent("runs.json")

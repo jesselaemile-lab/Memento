@@ -35,8 +35,13 @@ struct AppShell: View {
         .environment(appVM)
         .frame(minWidth: 1320, minHeight: 880)
         .background(Color.mGround)
+        .overlay(alignment: .bottomTrailing) {
+            if UITestSupport.isActive { UITestStatusLabel() }
+        }
         .onAppear {
             MementoFont.register()
+            // Must run before setup() so the run store and library open in the test directory.
+            if UITestSupport.isActive { UITestSupport.prepare() }
             appVM.setup()
         }
     }

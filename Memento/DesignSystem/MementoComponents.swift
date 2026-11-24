@@ -17,7 +17,11 @@ struct MPillButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 6) {
-                if let icon { Image(systemName: icon).font(.system(size: 11, weight: .semibold)) }
+                if let icon {
+                    // Decorative — the text is the button's accessible label.
+                    Image(systemName: icon).font(.system(size: 11, weight: .semibold))
+                        .accessibilityHidden(true)
+                }
                 Text(label).font(.mBodySemi)
             }
             .padding(.horizontal, 16)
@@ -162,6 +166,7 @@ struct MScreenHeader<Trailing: View>: View {
             }
             VStack(alignment: .leading, spacing: 3) {
                 Text(title).font(.mTitle).foregroundStyle(Color.mText)
+                    .accessibilityIdentifier("screen.title")
                 if let subtitle, !subtitle.isEmpty {
                     Text(subtitle)
                         .font(.mCaption)

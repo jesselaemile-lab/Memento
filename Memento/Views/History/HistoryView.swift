@@ -135,6 +135,7 @@ struct RunCard: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .accessibilityIdentifier("history.runCard")
     }
 
     private func countChip(_ text: String, dimColor: Bool = true, accent: Color? = nil) -> some View {
